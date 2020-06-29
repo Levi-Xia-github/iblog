@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/Calendar3.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <ul class="breadcrumb">
+                <li>
+                    <a>iblog</a>
+                </li>
+                <li>
+                    <a href="/user/admin">返回</a>
+                </li>
+                <li class="active">
+                    管理员中心
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+        </div>
+        <div class="col-md-6 column">
+
+
+
+            <form role="form" th:action="@{/user/adminUpdateUserInfo}" method="post" id="form_re">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">账号</label><input type="text" class="form-control"  readonly  unselectable="on" id="userName"  name = "userName" th:value=${session.ad_user.userName}>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">姓名</label><input type="text" class="form-control" id="userLoginname"  name="userLoginname" th:value=${session.ad_user.userLoginname}>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">电话</label><input type="text" class="form-control" id="userTel"  name = "userTel" th:value=${session.ad_user.userTel}>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">生日</label><input type="text" class="form-control" id="userBirth"  name = "userBirth" th:value=${session.ad_user.userBirth}>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">性别</label><input type="text" class="form-control" id="userGender"  name = "userGender" th:value=${session.ad_user.userGender}>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">密码</label> <button type="button" class="btn btn-success" th:onClick="location.href='/user/adminRefreshPassword?userNumber=[[${session.ad_user.userNumber}]]'">重置密码</button><br>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">邮箱</label><input type="text" class="form-control" id="userMail"  name = "userMail" th:value=${session.ad_user.userMail}>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">描述</label><input type="text" class="form-control" id="userDescribe"  name = "userDescribe" th:value=${session.ad_user.userDescribe}>
+                </div>
+
+
+                <button type="submit" class="btn btn-success">修改</button>
+
+            </form>
+
+        </div>
+        <div class="col-md-3 column">
+        </div>
+    </div>
+    <div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+        <div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+        </div>
+    </div>
+</div>
+</body>
+</html>

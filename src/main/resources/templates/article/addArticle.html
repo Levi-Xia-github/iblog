@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/Calendar3.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<div class="page-header">
+						<h1>
+							我的中心
+						</h1>
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<ul class="breadcrumb">
+						<li>
+							 <a>iblog</a>
+						</li>
+						<li>
+							 <a href="/main">主页</a>
+						</li>
+						<li class="active">
+							我的中心
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-2 column">
+					<div class="list-group">
+						<div  class="list-group-item active">
+							
+						</div>
+						<div class="list-group-item active">
+							<a  style="color:black">我的文章</a>
+						</div>
+						<div class="list-group-item">
+							<a href="../label/addLabel" style="color:black">我的标签</a>
+						</div>
+						<div class="list-group-item">
+							<a href="../user/myFouces" style="color:black">我的关注</a>
+						</div>
+						<div class="list-group-item">
+							<a href="../user/resetMyInfo" style="color:black">我的信息</a>
+						</div>
+						<div class="list-group-item">
+							<a  href="../user/resetPassword" style="color:black">修改密码</a>
+						</div>
+						<div  class="list-group-item active">
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 column">
+					
+					
+					
+					<div class="row clearfix">
+						<div class="col-md-1 column">
+						</div>
+						<div class="col-md-10 column">
+							
+						
+							<form class="form-horizontal" role="form" th:action="@{/article/addArticle}" method="post">
+									<div class="form-group">
+										 <label for="username">文章名称：</label>
+										<input class="form-control" id="articleName" name="articleName" type="text" />
+									</div>
+									<div class="form-group">
+										 <label for="password">文章内容：</label>
+										<textarea class="form-control" rows="3" name="articleContent"></textarea>
+<!--										<input class="form-control" id="articleContent" name="articleContent"/>-->
+									</div>
+
+									<div class="col-md-12 column">
+										<div class="form-group">
+										    <label for="username">请选择您要发表的文章的类型（没有请添加）：</label>
+
+										    <select  id = "labelName" name ="labelName" > 
+										        <option th:each="label:${listEnableLabel}">
+										           <a th:text="${label.labelName}"></a>
+										        </option>
+										    </select>
+										</div>
+											<button class="btn btn-block" type="submit">提交</button>
+										
+									</div>
+									
+								</form>
+			
+							
+							<div class="col-md-12 column"><hr style="height:1px;border:none;border-top:1px solid #555555;"/></div>														
+						</div>
+						<div class="col-md-1 column">
+						</div>
+					</div>
+					
+					
+					<div class="row clearfix" th:each=article:${listUserArticle}>
+						<div class="col-md-1 column">
+						</div>
+						<div class="col-md-10 column" >
+							
+							<h4 th:text="${article.articleName}"></h4>
+							<div class="col-md-12 column">	
+							    <h6><a th:text="${article.user.userLoginname}"></a>&nbsp&nbsp 
+								    <a th:text="${article.label.labelName}"></a> &nbsp&nbsp 
+								    <a th:text="${#temporals.format(article.articleTime,'yyyy-MM-dd HH:mm:ss')   }"></a> &nbsp&nbsp
+								    <a th:onClick="location.href='deleteArticle?articleNumber=[[${article.articleNumber}]]'">删除</a></h6>
+							</div>
+							<p th:text="${article.articleContent}"></p>
+							
+														
+									<div class="row clearfix">
+										<div class="col-md-1 column">
+										</div>
+										<div class="col-md-10 column">
+											
+											
+											<div class="col-md-12 column"  Style="background:lightgray"  th:each=comment:${listAllComment}  >
+												
+												<div th:if="${comment.article.articleNumber} eq ${article.articleNumber}">
+
+													<a th:text="${comment.user.userLoginname}"></a>回复<a th:text="${comment.replyUser.userLoginname}"></a>:<a style="color:black" th:text="${comment.comContent}"></a>
+																											
+												</div>							
+											</div>
+											
+										</div>
+										<div class="col-md-1 column">
+										</div>
+									
+									</div>
+									<div class="col-md-12 column">
+										<hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+									</div>
+						</div>
+						<div class="col-md-1 column">
+						</div>
+					</div>
+					
+					
+								
+				</div>
+				
+				
+				<div class="col-md-2 column">
+					<div class="row clearfix">
+						<div class="col-md-12 column">
+							<img alt="140x140" src="/img/4.jpg" class="img-circle" />
+							<div class="row clearfix">
+								<div class="col-md-12 column" style="text-align: center">
+									<blockquote>
+										<h5 th:text="'个性签名:'+${session.user.userDescribe}"></h5>
+									</blockquote>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+		<div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+		</div>
+	</div>
+</div>
+</body>
+</html>

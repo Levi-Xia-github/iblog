@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/Calendar3.js"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<div class="page-header">
+						<h2>
+							对"<a style="color:black" th:text=${searchContent}></a>"的搜索结果 
+						</h2>
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<ul class="breadcrumb">
+						<li>
+							 <a>iblog</a>
+						</li>
+						<li>
+							 <a href="/main">主页</a>
+						</li>
+						<li class="active">
+							搜索结果
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<div class="row clearfix">
+						<div class="col-md-5 column">
+							<div class="page-header">
+								<h1>
+									<small>与"<a style="color:black" th:text=${searchContent}></a>"有关的文章</small>
+								</h1>
+							</div>
+						</div>
+						
+						<div class="col-md-5 column">
+							<div class="page-header">
+								<h1>
+									<small>标签为"<a style="color:black" th:text=${searchContent}></a>"的文章</small>
+								</h1>
+							</div>
+						</div>
+						<div class="col-md-2 column">
+							<div class="page-header">
+								<h1>
+									 <small>含"<a style="color:black" th:text=${searchContent}></a>"的用户</small>
+								</h1>
+							</div>
+						</div>
+					</div>
+					<div class="row clearfix">
+						<div class="col-md-5 column">
+							
+							<div  th:each="article:${listArticle}">
+							   <h4 th:text="${article.articleName}"></h4>
+									<div class="col-md-12 column">	
+									    <h6><a th:text="${article.user.userLoginname}"></a>&nbsp&nbsp <a th:text="${article.label.labelName}"></a> </h6> 
+									</div>
+							     <p th:text="${article.articleContent}"></p>
+							     <div class="col-md-12 column">
+										<hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+							    </div>	
+							</div>
+							<div><h5  th:text="${noHaveArticle}"></h5></div>	
+							
+						</div>
+						
+						<div class="col-md-5 column">
+						
+							<div  th:each="article:${listLabelArticle}">
+							   <h4 th:text="${article.articleName}"></h4>
+									<div class="col-md-12 column">	
+									    <h6><a th:text="${article.user.userLoginname}"></a>&nbsp&nbsp <a th:text="${article.label.labelName}"></a> </h6> 
+									</div>
+							     <p th:text="${article.articleContent}"></p>
+							     <div class="col-md-12 column">
+										<hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+							    </div>	
+							</div>
+							<div><h5  th:text="${noHaveLabelArticle}"></h5></div>	
+								
+						</div>
+						
+						<div class="col-md-2 column" >
+							
+							<div  th:each="user:${listUser}">
+							    <h5  th:text="${user.userLoginname}"></h5>
+							</div>
+							<div><h5  th:text="${noHaveUser}"></h5></div>
+														
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+		<div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+		</div>
+	</div>
+</div>
+</body>
+</html>

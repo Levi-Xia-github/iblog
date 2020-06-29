@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<body>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="row clearfix" th:insert="~{layout/fragment::header}">
+
+            </div>
+            <div class="row clearfix" >
+                <div class="col-md-1 column">
+                </div>
+                <div class="col-md-2 column">
+                    <div class="row clearfix">
+                        <div class="col-md-10 column">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">常用分类</a>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=文学" style="color: black">文学</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=爱情" style="color: black">爱情</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=游戏" style="color: black">游戏</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=动漫" style="color: black">动漫</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=育儿" style="color: black">育儿</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=娱乐" style="color: black">娱乐</a>
+                                </div>
+                                <div class="list-group-item">
+                                    <a href="/label/mainLabelFindArticle?labelName=美术" style="color: black">美术</a>
+                                </div>
+                            </div>
+
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">最热博主</a>
+                                <div class="list-group-item">
+                                    NO1.xxx
+                                </div>
+                                <div class="list-group-item">
+                                    NO2.xwy
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-2 column">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 column">
+
+                    <div><h2 th:text="${labelName}"></h2></div>
+                    <div class="row clearfix" th:each=article:${articlelist}>
+                        <div class="col-md-1 column">
+                        </div>
+                        <div class="col-md-10 column" >
+
+                            <h4 th:text="${article.articleName}"></h4>
+                            <div class="col-md-12 column">
+                                <h6><a th:text="${article.user.userLoginname}"></a>&nbsp&nbsp <a th:text="${article.label.labelName}"></a> &nbsp&nbsp <a th:text="${article.articleTime}"></a></h6>
+                            </div>
+                            <p th:text="${article.articleContent}"></p>
+
+
+                            <div class="row clearfix">
+                                <div class="col-md-1 column">
+                                </div>
+                                <div class="col-md-10 column">
+
+<!--                                    <div class="col-md-12 column">-->
+<!--                                        <form class="navbar-form navbar-left" role="search"  th:action="@{/comment/addComment}" method="post">-->
+<!--                                            <div class="form-group">-->
+<!--                                                <input type="text" class="form-control" name="comContent"/>-->
+<!--                                                <input type="hidden" class="form-control" name="articleNumber" th:value="${article.articleNumber}" >-->
+<!--                                            </div>-->
+<!--                                            <button type="submit" class="btn btn-default">评论</button>-->
+<!--                                        </form>-->
+<!--                                    </div>-->
+
+                                    <div class="col-md-12 column"  Style="background:lightgray"  th:each=comment:${listAllComment}  >
+
+                                        <div th:if="${comment.article.articleNumber} eq ${article.articleNumber}">
+
+                                            <a th:text="${comment.user.userLoginname}"></a>回复<a th:text="${comment.replyUser.userLoginname}"></a>:<a style="color:black" th:text="${comment.comContent}"></a>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-1 column">
+                                </div>
+
+                            </div>
+                            <div class="col-md-12 column">
+                                <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+                            </div>
+                        </div>
+                        <div class="col-md-1 column">
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="col-md-2 column">
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                        </div>
+                        <div class="col-md-10 column">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">最热博客</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                        </div>
+                        <div class="col-md-10 column">
+
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                        </div>
+                        <div class="col-md-10 column">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item active">活动专区</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-md-2 column">
+                        </div>
+                        <div class="col-md-10 column">
+
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+                            <p>
+                                Donec id elit non mi porta...
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 column">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+        <div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+        </div>
+    </div>
+</div>
+</body>
+</body>
+</html>

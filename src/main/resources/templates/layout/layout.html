@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:replacce="~{layout/fragment::header}"></div>
+
+    <div layout:fragment="content">
+       <!--等待被覆盖-->
+    </div>
+    <div th:replacce="~{layout/fragment::footer}"></div>
+
+</body>
+</html>

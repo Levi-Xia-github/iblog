@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>login</title>
+
+	<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	 <script type="text/javascript" src="js/Calendar3.js"></script>
+
+ </head>
+
+  <style>
+ .button{
+ 	text-align:center;
+ }
+ </style>
+
+ <body style="background: url(/img/index1.jpg)">
+  <div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="page-header">
+				<h1>
+					用户登陆
+				</h1>
+			</div>
+			<div class="col-md-6 column">
+				
+			</div>
+			<div class="col-md-6 column">
+
+				<form class="form-horizontal" role="form" th:action="@{/login}" method="post">
+					<div class="form-group">
+						 <label for="username">用户名：</label><input class="form-control" id="userName" name="username" type="text" placeholder="请输入您的账号 "/>
+					</div>
+					<div class="form-group">
+						 <label for="password">密码：</label><input class="form-control" id="userPassword" name="password" type="password" placeholder="请输入您的密码"/>
+					</div>
+					<div class="checkbox">
+								 <label><input type="checkbox" />记住密码</label>
+					</div>
+					<div class="button">
+						<button class="btn btn-success" type="submit">登陆</button>
+						<a href="/user/addUser"><input type="button" class="btn btn-info" name="注册" value="注册"/></a>
+					</div>
+				</form>
+				   <div class="col-md-12 column"style="color:red;" th:if="${param.error}" th:text=${session.SPRING_SECURITY_LAST_EXCEPTION.message}></div>
+			</div>
+		</div>
+	</div>
+	  <div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+		  <div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+		  </div>
+	  </div>
+ </div>
+
+ </body>
+</html>

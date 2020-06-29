@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body style="background: url(/img/index.jpg)">
+<div class="container">
+    <div class="row clearfix" >
+        <div class="col-md-12 column" style="text-align: center">
+              <button class="btn btn-success" style="margin-top:500px" onclick="location.href='/login'">登录iBlog</button>
+              <button class="btn btn-info" style="margin-top:500px" onclick="location.href='/nologin'">暂不登录</button>
+        </div>
+    </div>
+    <div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+        <div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+        </div>
+    </div>
+</div>
+</body>
+</html>

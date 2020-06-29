@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+	<link href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	 
+	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	 
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script th:src="@{/js/Calendar3.js}"></script>
+
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<div class="page-header">
+						<h1>
+							我的中心
+						</h1>
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-10 column">
+					<ul class="breadcrumb">
+						<li>
+							 <a>iblog</a>
+						</li>
+						<li>
+							 <a href="/main">主页</a>
+						</li>
+						<li class="active">
+							我的中心
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div class="col-md-1 column">
+				</div>
+				<div class="col-md-2 column">
+					<div class="list-group">
+						<div  class="list-group-item active">
+							
+						</div>
+						<div class="list-group-item">
+							<a href="../article/addArticle" style="color:black">我的文章</a>
+						</div>
+						<div class="list-group-item">
+							<a href="../label/addLabel" style="color:black">我的标签</a>
+						</div>
+						<div class="list-group-item">
+							<a href="myFouces" style="color:black">我的关注</a>
+						</div>
+						<div class="list-group-item active">
+							<a style="color:black">我的信息</a>
+						</div>
+						<div class="list-group-item">
+							<a href="resetPassword" style="color:black">修改密码</a>
+						</div>
+						<div  class="list-group-item active">
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 column">
+					
+					
+					
+					
+					<div class="row clearfix">
+						<div class="col-md-1 column">
+						</div>
+						<div class="col-md-10 column">
+							
+							
+					<form role="form" th:action="@{/user/resetMyInfo}" method="post" id="form_re">
+						<div class="form-group">
+							 <label for="exampleInputEmail1">账号</label><input type="text" class="form-control"  readonly  unselectable="on" id="userName"  name = "userName" th:value=${session.user.userName}>
+						</div>
+						<div class="form-group">
+							 <label for="exampleInputEmail1">姓名</label><input type="text" class="form-control" id="userLoginname"  name="userLoginname" th:value=${session.user.userLoginname}>
+						</div>
+						
+					    <div class="form-group">
+							 <label for="exampleInputEmail1">电话</label><input type="text" class="form-control" id="userTel"  name = "userTel" th:value=${session.user.userTel}>
+						</div>
+						<div class="form-group">
+							 <label for="exampleInputEmail1">生日</label><input type="text" class="form-control" id="userBirth"  name = "userBirth" th:value=${session.user.userBirth} onclick="new Calendar().show(this);">
+						</div>
+						<div class="form-group">
+							 <label for="exampleInputEmail1">性别</label><input type="text" class="form-control" id="userGender"  name = "userGender" th:value=${session.user.userGender}>
+						</div>
+						<div class="form-group">
+							 <label for="exampleInputEmail1">邮箱</label><input type="text" class="form-control" id="userMail"  name = "userMail" th:value=${session.user.userMail}>
+						</div>
+						<div class="form-group">
+							 <label for="exampleInputEmail1">描述</label><input type="text" class="form-control" id="userDescribe"  name = "userDescribe" th:value=${session.user.userDescribe}>
+						</div>
+						<button type="submit" class="btn btn-default">修改</button>
+			        </form>
+							
+						</div>
+						<div class="col-md-1 column">
+						</div>
+					</div>
+				
+				
+				</div>
+				<div class="col-md-2 column">
+					<div class="row clearfix">
+						<div class="col-md-12 column">
+							<img alt="140x140" src="/img/4.jpg" class="img-circle" />
+							<div class="row clearfix">
+								<div class="col-md-12 column" style="text-align: center">
+									<blockquote>
+										<h5 th:text="'个性签名:'+${session.user.userDescribe}"></h5>
+									</blockquote>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1 column">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row clearfix" style="position: fixed;bottom: 30px;left:50%;transform: translate(-50%,50%)">
+		<div class="col-md-12 column" th:insert="~{layout/fragment::footer}">
+		</div>
+	</div>
+</div>
+</body>
+</html>
